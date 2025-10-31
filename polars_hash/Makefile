@@ -1,32 +1,32 @@
-
 SHELL=/bin/bash
 
 venv:  ## Set up virtual environment
-	python3 -m venv venv
-	venv/bin/pip install -r requirements.txt
+	rustup update
+	mise exec python@3.12.10 -- python -m venv --clear .venv
+	.venv/bin/pip install -r requirements.txt
 
 install: venv ## Install polars-hash in develop mode
 	unset CONDA_PREFIX && \
-	source venv/bin/activate && maturin develop
+	source .venv/bin/activate && maturin develop
 
 install-release: venv ## Install polars-hash in release mode
 	unset CONDA_PREFIX && \
-	source venv/bin/activate && maturin develop --release
+	source .venv/bin/activate && maturin develop --release
 
 lint: venv ## Run linter
 	unset CONDA_PREFIX && \
-	source venv/bin/activate && ruff check --fix . && cargo check
+	source .venv/bin/activate && ruff check --fix . && cargo check
 
 format: venv ## Run formatters
 	unset CONDA_PREFIX && \
-	source venv/bin/activate && ruff format . && cargo fmt
+	source .venv/bin/activate && ruff format . && cargo fmt
 
 test: venv install ## Run pytests
 	unset CONDA_PREFIX && \
-	source venv/bin/activate && pytest tests/
+	source .venv/bin/activate && pytest tests/
 
 clean: ## Clean venv and clean cargo
-	-@rm -r venv
+	-@rm -r .venv
 	-@cd polars_hash && cargo clean
 
 .PHONY: help

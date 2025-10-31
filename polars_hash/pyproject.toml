@@ -3,10 +3,10 @@ requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
 
 [project]
-name = "polars-hash"
-requires-python = ">=3.8"
+name = "polars-hash-lts-cpu"
+requires-python = ">=3.10"
 dependencies = [
-  'polars >= 1.32.0'
+  'polars-lts-cpu >= 1.33.0'
 ]
 classifiers = [
   "Programming Language :: Rust",
@@ -21,8 +21,8 @@ readme = "README.md"
 dynamic = ["version"]
 
 [project.urls]
-"Homepage" = "https://github.com/ion-elgreco/polars-hash"
-"Bug Tracker" = "https://github.com/ion-elgreco/polars-hash/issues"
+"Homepage" = "https://github.com/milaboratory/polars-hash-lts-cpu"
+"Bug Tracker" = "https://github.com/milaboratory/platforma/issues"
 
 [tool.maturin]
 module-name = "polars_hash._internal"
